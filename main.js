@@ -560,7 +560,7 @@
       sb.from('likes').upsert(
         { user_id: user.id, liked_user_id: p.user_id, is_like: false, created_at: new Date().toISOString() },
         { onConflict: 'user_id,liked_user_id' }
-      ).catch(console.error);
+      ).then(null, console.error);
       return;
     }
     cardEl.style.transition = 'transform .2s ease';
@@ -1205,8 +1205,8 @@
       await sb.from('profiles').delete().eq('user_id', uid);
 
       // 2. Eliminar de auth.users via Edge Function (requiere service_role en el servidor)
-      const { data: sessionData } = await sb.auth.getSession();
-      const token = sessionData?.session?.access_token;
+      const { data: { session } } = await sb.auth.getSession();
+      const token = session?.access_token;
       if (token) {
         const res = await fetch('https://fjevgfyqqsfankvledpl.supabase.co/functions/v1/delete-user', {
           method: 'POST',
@@ -1221,6 +1221,8 @@
           console.warn('[Admin Delete] Edge Function error:', errBody);
           // No interrumpimos — el perfil ya fue borrado de las tablas
         }
+      } else {
+        console.warn('[Admin Delete] No se pudo obtener token de sesión');
       }
 
       closeModal('m-admin-del-profile');
