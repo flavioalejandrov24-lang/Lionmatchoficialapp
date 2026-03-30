@@ -407,6 +407,59 @@
     }
   }
 
+  // Recarga el carrusel incluyendo rechazados, pero excluyendo matches y likes enviados
+  async function loadProfilesIncludingRejected() {
+    const stack = document.getElementById('card-stack');
+    document.getElementById('no-cards').style.display = 'none';
+    stack.querySelectorAll('.swipe-card,.skeleton-card').forEach(c => c.remove());
+
+    const reloadBtn = document.getElementById('reload-profiles-btn');
+    if (reloadBtn) reloadBtn.classList.add('spinning');
+
+    const skelCard = document.createElement('div');
+    skelCard.className = 'skeleton-card';
+    skelCard.innerHTML = `<div class="skeleton skel-img"></div><div style="z-index:2;width:100%"><div class="skeleton skel-name"></div><div class="skeleton skel-meta"></div><div class="skel-tags"><div class="skeleton skel-tag"></div><div class="skeleton skel-tag"></div></div></div>`;
+    stack.appendChild(skelCard);
+
+    try {
+      const myP = user.profile || {};
+
+      // Excluir solo los que ya tienen like (enviaron solicitud o dieron like/super)
+      const { data: likedData } = await sb.from('likes').select('liked_user_id,is_like').eq('user_id', user.id);
+      const likedIds = (likedData || []).filter(l => l.is_like === true).map(l => l.liked_user_id);
+
+      // Excluir también usuarios con los que ya hay match (por si acaso)
+      const { data: matchData } = await sb.from('matches')
+        .select('user1_id,user2_id').or(`user1_id.eq.${user.id},user2_id.eq.${user.id}`);
+      const matchedIds = (matchData || []).map(m => m.user1_id === user.id ? m.user2_id : m.user1_id);
+
+      const exc = [...new Set([...likedIds, ...matchedIds, user.id])];
+
+      let q = sb.from('profiles').select('*').eq('location', 'León, Guanajuato').neq('user_id', user.id);
+      if (exc.length > 0) q = q.not('user_id', 'in', `(${exc.join(',')})`);
+      if (myP.seeking && myP.seeking !== 'Todos') q = q.eq('gender', myP.seeking === 'Hombres' ? 'Hombre' : 'Mujer');
+      if (myP.age_min) q = q.gte('age', myP.age_min);
+      if (myP.age_max) q = q.lte('age', myP.age_max);
+
+      const { data, error } = await q.limit(20);
+      if (error) throw error;
+      profiles = [...(data || [])];
+      pIdx = 0;
+
+      if (!profiles.length) {
+        toast('No hay más perfiles por ahora, vuelve más tarde 😊', 'info');
+      }
+    } catch (err) {
+      console.error(err);
+      profiles = []; pIdx = 0;
+      toast('No se pudieron cargar los perfiles', 'err');
+    } finally {
+      stack.querySelectorAll('.skeleton-card').forEach(c => c.remove());
+      if (reloadBtn) reloadBtn.classList.remove('spinning');
+      renderCard();
+    }
+  }
+
   function renderCard() {
     const stack = document.getElementById('card-stack');
     stack.querySelectorAll('.swipe-card').forEach(c => c.remove());
@@ -1930,9 +1983,10 @@
     on('ob-next',  'click',  obNext);
     on('ob-prev',  'click',  obPrev);
 
-    on('like-btn',    'click', () => swipe('like'));
-    on('dislike-btn', 'click', () => swipe('dislike'));
-    on('super-btn',   'click', () => swipe('super'));
+    on('like-btn',            'click', () => swipe('like'));
+    on('dislike-btn',         'click', () => swipe('dislike'));
+    on('super-btn',           'click', () => swipe('super'));
+    on('reload-profiles-btn', 'click', () => loadProfilesIncludingRejected());
 
     initSolicitudModal();
 

@@ -252,9 +252,14 @@ body::before{
 .hint-nope{left:1.5rem;color:#f87171;border-color:#f87171;transform:rotate(-12deg)}
 .hint.show{opacity:1}
 .no-cards{position:absolute;inset:0;border-radius:var(--r4);background:var(--c-surface);border:1px solid var(--c-border);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
-.no-cards svg{width:64px;height:64px;color:var(--c-dim);margin-bottom:1.25rem;stroke-width:1.5}
 .no-cards h3{font-family:var(--font-h);font-size:1.3rem;color:var(--c-text);margin-bottom:.4rem}
 .no-cards p{color:var(--c-muted);font-size:.88rem}
+.reload-profiles-btn{width:72px;height:72px;border-radius:50%;background:var(--grad);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:1.25rem;box-shadow:0 8px 32px rgba(108,99,255,.45);transition:transform .2s,box-shadow .2s}
+.reload-profiles-btn:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(108,99,255,.6)}
+.reload-profiles-btn:active{transform:scale(.94)}
+.reload-profiles-btn svg{width:30px;height:30px;color:#fff;stroke-width:2.2}
+.reload-profiles-btn.spinning svg{animation:reloadSpin .7s ease-in-out}
+@keyframes reloadSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .actions{display:flex;align-items:center;justify-content:center;gap:1.5rem}
 .act-btn{width:68px;height:68px;border-radius:50%;border:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(0,0,0,.5);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
 .act-btn:hover{transform:scale(1.08)}
