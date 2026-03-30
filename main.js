@@ -1197,17 +1197,36 @@
     if (btn) btn.classList.add('loading');
     try {
       const uid = profile.user_id;
-      // Eliminar en cascada: mensajes → matches → likes → perfil
+
+      // 1. Eliminar datos en cascada desde las tablas
       await sb.from('messages').delete().or(`sender_id.eq.${uid},receiver_id.eq.${uid}`);
       await sb.from('matches').delete().or(`user1_id.eq.${uid},user2_id.eq.${uid}`);
       await sb.from('likes').delete().or(`user_id.eq.${uid},liked_user_id.eq.${uid}`);
       await sb.from('profiles').delete().eq('user_id', uid);
-      // NOTA: La cuenta de Auth (auth.users) requiere una Edge Function con
-      // service_role key para eliminarse completamente. Ver instrucciones post-deploy.
+
+      // 2. Eliminar de auth.users via Edge Function (requiere service_role en el servidor)
+      const { data: sessionData } = await sb.auth.getSession();
+      const token = sessionData?.session?.access_token;
+      if (token) {
+        const res = await fetch('https://fjevgfyqqsfankvledpl.supabase.co/functions/v1/delete-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({ user_id: uid }),
+        });
+        if (!res.ok) {
+          const errBody = await res.json().catch(() => ({}));
+          console.warn('[Admin Delete] Edge Function error:', errBody);
+          // No interrumpimos — el perfil ya fue borrado de las tablas
+        }
+      }
+
       closeModal('m-admin-del-profile');
-      toast(`✅ Perfil de "${profile.name}" eliminado`, 'ok');
+      toast(`✅ Perfil de "${profile.name}" eliminado completamente`, 'ok');
       _adminDelTarget = null;
-      // Eliminar del array local y avanzar en el carrusel
+      // Eliminar del array local y avanzar en el carrusel sin recargar todo
       profiles.splice(pIdx, 1);
       if (pIdx >= profiles.length) pIdx = Math.max(0, profiles.length - 1);
       renderCard();
