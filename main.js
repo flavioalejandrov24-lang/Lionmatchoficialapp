@@ -428,6 +428,19 @@
       ? '<span style="display:inline-flex;align-items:center;gap:.2rem;background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.3);border-radius:50px;padding:.1rem .5rem;font-size:.68rem;font-weight:700;color:#34d399;margin-left:.35rem">✓</span>' : '';
     card.innerHTML += `<div class="card-info"><h3>${escapeHtml(p.name)}${veriBadge}</h3>${meta ? `<div class="card-meta">${meta}</div>` : ''}<p>${p.bio ? escapeHtml(p.bio.slice(0, 80)) + (p.bio.length > 80 ? '…' : '') : 'León, Guanajuato'}</p>${tags}</div><div class="hint hint-like">LIKE</div><div class="hint hint-nope">NOPE</div>`;
     stack.appendChild(card);
+    // ── Botón admin para eliminar el perfil visible en la card ────────
+    if (user?.email === ADMIN_EMAIL) {
+      const adminDelBtn = document.createElement('button');
+      adminDelBtn.className = 'admin-del-card-btn';
+      adminDelBtn.title = 'Eliminar perfil (Admin)';
+      adminDelBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>`;
+      adminDelBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        e.preventDefault();
+        openAdminDeleteModal(p);
+      });
+      card.appendChild(adminDelBtn);
+    }
     addDragHandlers(card);
   }
 
@@ -1166,6 +1179,47 @@
   }
 
   /* ════════════════════════════════════════════════════
+     15b. ADMIN — ELIMINAR PERFIL DESDE CARRUSEL
+  ════════════════════════════════════════════════════ */
+  let _adminDelTarget = null;
+
+  function openAdminDeleteModal(profile) {
+    _adminDelTarget = profile;
+    const nameEl = document.getElementById('m-admin-del-name');
+    if (nameEl) nameEl.textContent = profile.name || 'este usuario';
+    openModal('m-admin-del-profile');
+  }
+
+  async function adminDeleteProfile() {
+    if (!_adminDelTarget) return;
+    const profile = _adminDelTarget;
+    const btn = document.getElementById('m-admin-del-confirm');
+    if (btn) btn.classList.add('loading');
+    try {
+      const uid = profile.user_id;
+      // Eliminar en cascada: mensajes → matches → likes → perfil
+      await sb.from('messages').delete().or(`sender_id.eq.${uid},receiver_id.eq.${uid}`);
+      await sb.from('matches').delete().or(`user1_id.eq.${uid},user2_id.eq.${uid}`);
+      await sb.from('likes').delete().or(`user_id.eq.${uid},liked_user_id.eq.${uid}`);
+      await sb.from('profiles').delete().eq('user_id', uid);
+      // NOTA: La cuenta de Auth (auth.users) requiere una Edge Function con
+      // service_role key para eliminarse completamente. Ver instrucciones post-deploy.
+      closeModal('m-admin-del-profile');
+      toast(`✅ Perfil de "${profile.name}" eliminado`, 'ok');
+      _adminDelTarget = null;
+      // Eliminar del array local y avanzar en el carrusel
+      profiles.splice(pIdx, 1);
+      if (pIdx >= profiles.length) pIdx = Math.max(0, profiles.length - 1);
+      renderCard();
+    } catch (err) {
+      console.error('[Admin Delete]', err);
+      toast('Error al eliminar: ' + err.message, 'err');
+    } finally {
+      if (btn) btn.classList.remove('loading');
+    }
+  }
+
+  /* ════════════════════════════════════════════════════
      16. PERFIL — CARGA Y RENDER
   ════════════════════════════════════════════════════ */
   async function loadProfile() {
@@ -1598,6 +1652,9 @@
     document.getElementById('match-chat-btn').addEventListener('click', () => {
       closeModal('m-match'); showScreen('messages'); Promise.all([loadMatches(), loadConvos()]);
     });
+    // ── Admin: eliminar perfil ────────────────────────────────────────
+    document.getElementById('m-admin-del-cancel').addEventListener('click',  () => closeModal('m-admin-del-profile'));
+    document.getElementById('m-admin-del-confirm').addEventListener('click', adminDeleteProfile);
   }
 
   /* ════════════════════════════════════════════════════
