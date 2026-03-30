@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LionMatch – León, Gto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ══════════════════════════════════════
+       SPLASH (carga inicial)
+  ══════════════════════════════════════ -->
+  <div id="splash-screen">
+    <div class="splash-logo">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="splash-title">LionMatch</div>
+    <p class="splash-sub">Conecta en León, Guanajuato</p>
+    <div class="splash-dots">
+      <div class="splash-dot"></div>
+      <div class="splash-dot"></div>
+      <div class="splash-dot"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       LOGIN
+  ══════════════════════════════════════ -->
+  <div id="login-screen" class="screen">
+    <div class="login-inner">
+      <div class="logo-wrap">
+        <img src="logomatch.png" alt="LionMatch" class="logo-img">
+        <div class="app-title">LionMatch</div>
+        <p class="app-sub">Conecta en León, Guanajuato</p>
+      </div>
+      <div class="glass-card">
+        <form id="login-form">
+          <div class="fg">
+            <label>Correo electrónico</label>
+            <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
+          </div>
+          <div class="fg">
+            <label>Contraseña</label>
+            <div class="pw-wrap">
+              <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required>
+              <button type="button" class="toggle-pw" data-target="login-password">
+                <svg class="eye-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+          <label class="check-row">
+            <input type="checkbox" id="age-confirm" required>
+            <span>Confirmo que soy mayor de 18 años</span>
+          </label>
+          <div class="login-btn-row">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+            <button type="button" class="btn btn-blue" id="go-register">Crear cuenta</button>
+          </div>
+          <button type="button" class="link-btn" id="forgot-link">¿Olvidaste tu contraseña?</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       REGISTRO
+  ══════════════════════════════════════ -->
+  <div id="register-screen" class="screen">
+    <div class="page-wrap">
+      <button class="back-btn" id="back-login">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="page-title">Crear Cuenta</div>
+      <p class="page-sub">Únete a la comunidad leonesa</p>
+      <form id="register-form">
+        <div class="fg">
+          <label>Correo electrónico</label>
+          <input type="email" id="reg-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
+        </div>
+        <div class="fg">
+          <label>Contraseña</label>
+          <div class="pw-wrap">
+            <input type="password" id="reg-pw" placeholder="••••••••" autocomplete="new-password" minlength="6" required>
+            <button type="button" class="toggle-pw" data-target="reg-pw">
+              <svg class="eye-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="eye-c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Confirmar contraseña</label>
+          <div class="pw-wrap">
+            <input type="password" id="reg-pw2" placeholder="••••••••" autocomplete="new-password" minlength="6" required>
+            <button type="button" class="toggle-pw" data-target="reg-pw2">
+              <svg class="eye-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="eye-c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="reg-age" required>
+          <span>Confirmo que soy mayor de 18 años</span>
+        </label>
+        <div class="btn-row">
+          <button type="submit" class="btn btn-primary">Crear cuenta</button>
+          <button type="button" class="btn btn-danger" id="cancel-reg">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ONBOARDING
+  ══════════════════════════════════════ -->
+  <div id="onboarding-screen" class="screen">
+    <div class="page-wrap">
+      <button class="back-btn" id="back-ob">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="prog-bar"><div class="prog-fill" id="ob-prog"></div></div>
+      <div class="page-title">Tu Perfil</div>
+      <p class="page-sub">Cuéntanos sobre ti</p>
+      <form id="ob-form">
+
+        <!-- PASO 1 -->
+        <div class="step active" data-step="1">
+          <div class="fg" style="text-align:center">
+            <label style="display:block;margin-bottom:.75rem">Foto de perfil <span class="req-star">*</span></label>
+            <div class="photo-upload-zone" id="photo-zone-ob">
+              <div class="upload-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Subir foto</span>
+              </div>
+              <div class="photo-edit-overlay">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <input type="file" id="photo-input-ob" accept="image/*">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Nombre <span class="req-star">*</span></label>
+            <input type="text" id="ob-name" placeholder="Tu nombre">
+          </div>
+          <div class="fg">
+            <label>Fecha de nacimiento <span class="req-star">*</span></label>
+            <input type="date" id="ob-birth">
+            <div class="validation-msg err" id="ob-birth-msg" style="display:none">Debes ser mayor de 18 años</div>
+          </div>
+          <div class="fg">
+            <label>Género <span class="optional-badge">(opcional)</span></label>
+            <select id="ob-gender">
+              <option value="">Selecciona</option>
+              <option value="Hombre">Hombre</option>
+              <option value="Mujer">Mujer</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="step" data-step="2">
+          <div class="fg">
+            <label>¿A quién buscas? <span class="optional-badge">(opcional)</span></label>
+            <div class="chips" id="ob-seeking-chips">
+              <button type="button" class="chip" data-v="Hombres">Hombres</button>
+              <button type="button" class="chip" data-v="Mujeres">Mujeres</button>
+              <button type="button" class="chip" data-v="Todos">Todos</button>
+            </div>
+            <input type="hidden" id="ob-seeking">
+          </div>
+          <div class="age-range-section" id="age-range-section">
+            <div class="fg">
+              <label>Rango de edad <span class="optional-badge">(opcional)</span></label>
+              <div class="age-range-row">
+                <input type="number" id="ob-age-min" placeholder="Desde" min="18" max="99" style="text-align:center">
+                <input type="number" id="ob-age-max" placeholder="Hasta" min="18" max="99" style="text-align:center">
+              </div>
+            </div>
+          </div>
+          <div class="fg" style="margin-top:1.25rem">
+            <label>Tipo de relación <span class="optional-badge">(opcional)</span></label>
+            <div class="chips">
+              <button type="button" class="chip" data-v2="Algo serio">Algo serio</button>
+              <button type="button" class="chip" data-v2="Casual">Casual</button>
+              <button type="button" class="chip" data-v2="Amistad">Amistad</button>
+              <button type="button" class="chip" data-v2="No sé aún">No sé aún</button>
+            </div>
+            <input type="hidden" id="ob-relation">
+          </div>
+          <div class="fg" style="margin-top:1.25rem">
+            <label>Profesión <span class="optional-badge">(opcional)</span></label>
+            <input type="text" id="ob-profession" placeholder="Ej: Diseñador, Enfermera, Estudiante…">
+          </div>
+          <div class="fg">
+            <label>¿Fumas? <span class="optional-badge">(opcional)</span></label>
+            <select id="ob-smokes">
+              <option value="">Selecciona</option>
+              <option value="No fumo">No fumo</option>
+              <option value="Socialmente">Socialmente</option>
+              <option value="Frecuentemente">Frecuentemente</option>
+              <option value="Ocasiones especiales">Ocasiones especiales</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>¿Tomas alcohol? <span class="optional-badge">(opcional)</span></label>
+            <select id="ob-drinks">
+              <option value="">Selecciona</option>
+              <option value="No tomo">No tomo</option>
+              <option value="A veces">A veces</option>
+              <option value="Socialmente">Socialmente</option>
+              <option value="Frecuentemente">Frecuentemente</option>
+              <option value="Ocasiones especiales">Ocasiones especiales</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Género musical favorito <span class="optional-badge">(opcional)</span></label>
+            <select id="ob-music-genre">
+              <option value="">Selecciona</option>
+              <option value="Pop">Pop</option>
+              <option value="Rock">Rock</option>
+              <option value="Hip Hop / Trap">Hip Hop / Trap</option>
+              <option value="Reggaeton">Reggaeton</option>
+              <option value="Electrónica / Dance">Electrónica / Dance</option>
+              <option value="Banda / Norteño">Banda / Norteño</option>
+              <option value="Salsa / Cumbia">Salsa / Cumbia</option>
+              <option value="Jazz / Blues">Jazz / Blues</option>
+              <option value="Clásica">Clásica</option>
+              <option value="R&amp;B / Soul">R&amp;B / Soul</option>
+              <option value="Indie / Alternativo">Indie / Alternativo</option>
+              <option value="Metal">Metal</option>
+              <option value="Variado">Variado / De todo</option>
+            </select>
+          </div>
+          <div class="fg" style="margin-top:1.25rem">
+            <label>Ubicación</label>
+            <div class="loc-lock">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              León, Guanajuato
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 3 -->
+        <div class="step" data-step="3">
+          <div class="fg">
+           <label>Sobre ti <span class="req-star">*</span> <span class="optional-badge">(mínimo 50 caracteres)</span></label>
+        <textarea id="ob-bio" placeholder="Cuéntanos algo interesante…" maxlength="300"></textarea>
+        <div class="char-count" id="ob-bio-counter"><span id="ob-bio-n">0</span>/300 — necesitas al menos 50 </div>
+          </div>
+          <div class="fg">
+            <label>Intereses <span class="req-star">*</span> <span class="optional-badge">(mínimo 3, máximo 8)</span></label>
+            <div class="interest-chips" id="ob-interest-chips"></div>
+            <div class="int-count" id="ob-int-count">0 / 8 seleccionados</div>
+            <input type="hidden" id="ob-interests">
+          </div>
+          <div class="fg" style="margin-top:1.5rem">
+            <span class="extra-photos-label">Más fotos <span class="optional-badge">(opcional)</span></span>
+            <div class="extra-photos-grid">
+              <div class="mini-photo-zone" id="mini-zone-ob-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span class="mini-label">Foto 2</span>
+                <button type="button" class="mini-del-btn" data-slot="2" data-ctx="ob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                <input type="file" accept="image/*" id="photo-input-ob-2">
+              </div>
+              <div class="mini-photo-zone" id="mini-zone-ob-3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span class="mini-label">Foto 3</span>
+                <button type="button" class="mini-del-btn" data-slot="3" data-ctx="ob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                <input type="file" accept="image/*" id="photo-input-ob-3">
+              </div>
+              <div class="mini-photo-zone" id="mini-zone-ob-4">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span class="mini-label">Foto 4</span>
+                <button type="button" class="mini-del-btn" data-slot="4" data-ctx="ob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                <input type="file" accept="image/*" id="photo-input-ob-4">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" id="ob-prev" style="display:none">Anterior</button>
+          <button type="button" class="btn btn-primary" id="ob-next">Siguiente</button>
+          <button type="submit" class="btn btn-success" id="ob-finish" style="display:none">Completar ✓</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DISCOVERY
+  ══════════════════════════════════════ -->
+  <div id="discovery-screen" class="screen">
+    <header class="app-header">
+      <button class="menu-btn" id="open-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <span class="h-title">LionMatch</span>
+      <button class="icon-btn" id="security-btn" title="Políticas de seguridad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </button>
+    </header>
+    <div class="discovery-wrap">
+      <div class="card-stack" id="card-stack">
+        <div class="no-cards" id="no-cards" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <h3>Ya los viste todos</h3>
+          <p>Vuelve pronto para nuevos perfiles</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="act-btn pass" id="dislike-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="act-btn like" id="like-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="act-btn super" id="super-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MENSAJES
+  ══════════════════════════════════════ -->
+  <div id="messages-screen" class="screen">
+    <header class="app-header">
+      <button class="menu-btn" id="msg-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <span style="font-family:var(--font-h);font-size:1.15rem;font-weight:800;color:var(--c-text)">Mensajes<span class="rt-dot" title="Tiempo real"></span></span>
+      <div style="width:38px"></div>
+    </header>
+    <div class="msg-wrap">
+      <div class="section-label">Matches recientes</div>
+      <div class="matches-row" id="matches-row"></div>
+      <div class="section-label">Conversaciones</div>
+      <div id="conv-list">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h3>Sin conversaciones</h3>
+          <p>Cuando hagas match aparecerán aquí</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CHAT
+  ══════════════════════════════════════ -->
+  <div id="chat-screen" class="screen">
+    <div class="chat-hdr">
+      <button class="back-btn" id="back-chat" style="margin:0;flex-shrink:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="chat-user-info-wrap">
+        <div class="chat-av-ph" id="chat-av-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="chat-user-info">
+          <h4 id="chat-user-name">Usuario</h4>
+          <span id="chat-user-status" class="chat-verify-status">Cuenta no verificada aún</span>
+        </div>
+      </div>
+      <div class="chat-hdr-actions">
+        <button class="chat-bell-btn" id="chat-bell-btn" title="Notificaciones de este chat">
+          <svg id="chat-bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:17px;height:17px"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+        <button class="chat-view-profile-btn" id="chat-view-profile-btn">Ver perfil</button>
+        <div class="chat-menu-wrap">
+          <button class="chat-dots-btn" id="chat-dots-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+          </button>
+          <div class="chat-dropdown" id="chat-dropdown" style="display:none">
+            <button class="chat-dropdown-item danger" id="chat-block-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+              <span id="chat-block-label">Bloquear</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-msgs" id="chat-msgs"></div>
+    <div id="chat-wall" class="chat-wall" style="display:none">
+      <div class="chat-wall-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+      </div>
+      <h3>¡Verifica tu identidad!</h3>
+      <p>Para seguir charlando necesitas verificar que eres una persona real.</p>
+      <button class="btn btn-primary" id="wall-verify-btn" style="max-width:260px">Verificar ahora ✓</button>
+    </div>
+    <div class="chat-input-bar">
+      <input type="text" id="chat-input" placeholder="Escribe un mensaje…">
+      <button class="send-btn" id="send-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MI PERFIL
+  ══════════════════════════════════════ -->
+  <div id="profile-screen" class="screen">
+    <header class="app-header">
+      <button class="menu-btn" id="prof-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <span style="font-family:var(--font-h);font-weight:800;color:var(--c-text);font-size:1.15rem">Mi Perfil</span>
+      <div style="width:38px"></div>
+    </header>
+    <div class="profile-hero">
+      <div class="profile-aurora">
+        <div class="profile-aurora-orb"></div>
+        <div class="profile-aurora-orb"></div>
+      </div>
+      <div class="profile-avatar-section">
+        <div class="avatar-ring-wrap">
+          <div class="avatar-ring"></div>
+          <div id="prof-av-wrap" class="profile-avatar-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+        </div>
+        <div class="profile-hero-name" id="prof-name">—</div>
+        <div class="profile-hero-sub" id="prof-sub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;color:rgba(110,231,183,.8)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          León, Gto
+        </div>
+        <div class="profile-stats" id="prof-stats"></div>
+        <div class="profile-photos-row" id="prof-extra-photos"></div>
+      </div>
+      <div class="profile-hero-divider"></div>
+    </div>
+    <div class="profile-body">
+      <div class="info-card card-bio">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Sobre mí</h3>
+        <p id="prof-bio">Sin biografía</p>
+      </div>
+      <div class="info-card card-interests">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Intereses</h3>
+        <div id="prof-interests"><p style="color:var(--c-muted);font-size:.9rem">—</p></div>
+      </div>
+      <div class="info-card card-seeking">
+        <div class="seeking-row">
+          <div class="seeking-col">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Busco</h3>
+            <p id="prof-seeking">—</p>
+          </div>
+          <div class="seeking-divider"></div>
+          <div class="seeking-col seeking-col-para" id="prof-para-col" style="display:none">
+            <h3 class="h3-para"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Para</h3>
+            <p id="prof-relation">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="info-card card-lifestyle" id="prof-card-lifestyle" style="display:none">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Estilo de vida</h3>
+        <div id="prof-lifestyle" class="lifestyle-pills"></div>
+      </div>
+      <div class="info-card card-music" id="prof-card-music" style="display:none">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Música</h3>
+        <p id="prof-music">—</p>
+      </div>
+      <div class="profile-btns">
+        <button class="btn-edit-profile" id="edit-prof-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Editar
+        </button>
+        <button class="btn-del-profile" id="del-acc-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MIS MATCHES
+  ══════════════════════════════════════ -->
+  <div id="matches-screen" class="screen">
+    <header class="app-header">
+      <button class="menu-btn" id="matches-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <span style="font-family:var(--font-h);font-size:1.15rem;font-weight:800;color:var(--c-text)">Mis Matches</span>
+      <div style="width:38px"></div>
+    </header>
+    <div class="matches-hero">
+      <div class="matches-hero-content">
+        <div class="matches-hero-title">Tus Matches 💞</div>
+        <div class="matches-hero-sub">Personas con las que conectaste en León</div>
+        <div class="matches-hero-count" id="matches-hero-count">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="matches-count-label">0 matches</span>
+        </div>
+      </div>
+    </div>
+    <div class="matches-page-wrap">
+      <div class="matches-grid" id="matches-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       VER PERFIL DE MATCH
+       BUG CORREGIDO: ID duplicado eliminado
+  ══════════════════════════════════════ -->
+  <div id="view-match-profile-screen" class="screen">
+    <header class="app-header">
+      <button class="back-btn" id="back-view-match" style="margin:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <span style="font-family:var(--font-h);font-size:1.15rem;font-weight:800;color:var(--c-text)" id="view-match-header-name">Perfil</span>
+      <div style="width:38px"></div><!-- spacer para centrar el nombre -->
+    </header>
+    <div class="profile-hero">
+      <div class="profile-aurora">
+        <div class="profile-aurora-orb"></div>
+        <div class="profile-aurora-orb"></div>
+      </div>
+      <div class="profile-avatar-section">
+        <div class="avatar-ring-wrap">
+          <div class="avatar-ring"></div>
+          <div id="view-match-av-wrap" class="profile-avatar-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+        </div>
+        <div class="profile-hero-name" id="view-match-name">—</div>
+        <div class="profile-hero-sub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;color:rgba(110,231,183,.8)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          León, Gto
+        </div>
+        <div class="profile-stats" id="view-match-stats"></div>
+        <div class="profile-photos-row" id="view-match-extra-photos"></div>
+      </div>
+      <div class="profile-hero-divider"></div>
+    </div>
+    <div class="profile-body">
+      <div class="info-card card-bio">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Sobre esta persona</h3>
+        <p id="view-match-bio">—</p>
+      </div>
+      <div class="info-card card-interests">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Intereses</h3>
+        <div id="view-match-interests"><p style="color:var(--c-muted);font-size:.9rem">—</p></div>
+      </div>
+      <div class="info-card card-seeking">
+        <div class="seeking-row">
+          <div class="seeking-col">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Busca</h3>
+            <p id="view-match-seeking">—</p>
+          </div>
+          <div class="seeking-divider"></div>
+          <div class="seeking-col seeking-col-para" id="view-match-para-col" style="display:none">
+            <h3 class="h3-para"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Para</h3>
+            <p id="view-match-relation">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="info-card card-lifestyle" id="view-match-card-lifestyle" style="display:none">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Estilo de vida</h3>
+        <div id="view-match-lifestyle" class="lifestyle-pills"></div>
+      </div>
+      <div class="info-card card-music" id="view-match-card-music" style="display:none">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Música</h3>
+        <p id="view-match-music">—</p>
+      </div>
+      <div style="margin-top:.75rem">
+        <button class="btn btn-primary" id="view-match-chat-btn" style="width:100%">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:17px;height:17px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Ir al chat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       EDITAR PERFIL
+  ══════════════════════════════════════ -->
+  <div id="edit-screen" class="screen">
+    <div class="page-wrap">
+      <button class="back-btn" id="back-edit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="page-title">Editar Perfil</div>
+      <p class="page-sub">Actualiza tu información</p>
+      <form id="edit-form">
+        <div class="fg" style="text-align:center">
+          <label style="display:block;margin-bottom:.75rem">Foto de perfil <span class="req-star">*</span></label>
+          <div class="photo-upload-zone" id="photo-zone-edit">
+            <div class="upload-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Cambiar foto</span>
+            </div>
+            <div class="photo-edit-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <input type="file" id="photo-input-edit" accept="image/*">
+          </div>
+        </div>
+        <div class="fg">
+          <span class="extra-photos-label">Fotos adicionales</span>
+          <div class="extra-photos-grid">
+            <div class="mini-photo-zone" id="mini-zone-edit-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span class="mini-label">Foto 2</span>
+              <button type="button" class="mini-del-btn" data-slot="2" data-ctx="edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+              <input type="file" accept="image/*" id="photo-input-edit-2">
+            </div>
+            <div class="mini-photo-zone" id="mini-zone-edit-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span class="mini-label">Foto 3</span>
+              <button type="button" class="mini-del-btn" data-slot="3" data-ctx="edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+              <input type="file" accept="image/*" id="photo-input-edit-3">
+            </div>
+            <div class="mini-photo-zone" id="mini-zone-edit-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span class="mini-label">Foto 4</span>
+              <button type="button" class="mini-del-btn" data-slot="4" data-ctx="edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+              <input type="file" accept="image/*" id="photo-input-edit-4">
+            </div>
+          </div>
+        </div>
+        <div class="fg"><label>Nombre <span class="req-star">*</span></label><input type="text" id="edit-name" required></div>
+        <div class="fg"><label>Fecha de nacimiento <span class="req-star">*</span></label><input type="date" id="edit-birth"></div>
+        <div class="fg">
+          <label>Género <span class="optional-badge">(opcional)</span></label>
+          <select id="edit-gender">
+            <option value="">Selecciona</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Sobre ti <span class="req-star">*</span> <span class="optional-badge">(mínimo 50 chars)</span></label>
+          <textarea id="edit-bio" maxlength="300" placeholder="Cuéntanos algo sobre ti…"></textarea>
+          <div class="char-count" id="edit-bio-counter"><span id="edit-bio-n">0</span>/300</div>
+        </div>
+        <div class="fg">
+          <label>Intereses <span class="req-star">*</span> <span class="optional-badge">(mínimo 3, máximo 8)</span></label>
+          <div class="interest-chips" id="edit-interest-chips"></div>
+          <div class="int-count" id="edit-int-count">0 / 8 seleccionados</div>
+          <input type="hidden" id="edit-interests">
+        </div>
+        <div class="fg">
+          <label>Busco <span class="optional-badge">(opcional)</span></label>
+          <div class="chips" id="edit-seeking-chips">
+            <button type="button" class="chip" data-v="Hombres">Hombres</button>
+            <button type="button" class="chip" data-v="Mujeres">Mujeres</button>
+            <button type="button" class="chip" data-v="Todos">Todos</button>
+          </div>
+          <input type="hidden" id="edit-seeking">
+        </div>
+        <div class="age-range-section" id="edit-age-range-section">
+          <div class="fg">
+            <label>Rango de edad</label>
+            <div class="age-range-row">
+              <input type="number" id="edit-age-min" placeholder="Desde" min="18" max="99" style="text-align:center">
+              <input type="number" id="edit-age-max" placeholder="Hasta" min="18" max="99" style="text-align:center">
+            </div>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Tipo de relación <span class="optional-badge">(opcional)</span></label>
+          <div class="chips" id="edit-relation-chips">
+            <button type="button" class="chip" data-v3="Algo serio">Algo serio</button>
+            <button type="button" class="chip" data-v3="Casual">Casual</button>
+            <button type="button" class="chip" data-v3="Amistad">Amistad</button>
+            <button type="button" class="chip" data-v3="No sé aún">No sé aún</button>
+          </div>
+          <input type="hidden" id="edit-relation">
+        </div>
+        <div class="fg">
+          <label>Profesión <span class="optional-badge">(opcional)</span></label>
+          <input type="text" id="edit-profession" placeholder="Ej: Diseñador, Enfermera, Estudiante…">
+        </div>
+        <div class="fg">
+          <label>¿Fumas? <span class="optional-badge">(opcional)</span></label>
+          <select id="edit-smokes">
+            <option value="">Selecciona</option>
+            <option value="No fumo">No fumo</option>
+            <option value="Socialmente">Socialmente</option>
+            <option value="Frecuentemente">Frecuentemente</option>
+            <option value="Ocasiones especiales">Ocasiones especiales</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>¿Tomas alcohol? <span class="optional-badge">(opcional)</span></label>
+          <select id="edit-drinks">
+            <option value="">Selecciona</option>
+            <option value="No tomo">No tomo</option>
+            <option value="A veces">A veces</option>
+            <option value="Socialmente">Socialmente</option>
+            <option value="Frecuentemente">Frecuentemente</option>
+            <option value="Ocasiones especiales">Ocasiones especiales</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Género musical favorito <span class="optional-badge">(opcional)</span></label>
+          <select id="edit-music-genre">
+            <option value="">Selecciona</option>
+            <option value="Pop">Pop</option>
+            <option value="Rock">Rock</option>
+            <option value="Hip Hop / Trap">Hip Hop / Trap</option>
+            <option value="Reggaeton">Reggaeton</option>
+            <option value="Electrónica / Dance">Electrónica / Dance</option>
+            <option value="Banda / Norteño">Banda / Norteño</option>
+            <option value="Salsa / Cumbia">Salsa / Cumbia</option>
+            <option value="Jazz / Blues">Jazz / Blues</option>
+            <option value="Clásica">Clásica</option>
+            <option value="R&amp;B / Soul">R&amp;B / Soul</option>
+            <option value="Indie / Alternativo">Indie / Alternativo</option>
+            <option value="Metal">Metal</option>
+            <option value="Variado">Variado / De todo</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn btn-success">Guardar cambios</button>
+          <button type="button" class="btn btn-ghost" id="cancel-edit">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       VERIFICACIÓN
+  ══════════════════════════════════════ -->
+  <div id="verify-screen" class="screen">
+    <div class="page-wrap">
+      <button class="back-btn" id="back-verify">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="page-title">Verificar identidad</div>
+      <p class="page-sub">Una selfie confirma que eres una persona real</p>
+      <div id="verify-content"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ADMIN
+  ══════════════════════════════════════ -->
+  <div id="admin-screen" class="screen">
+    <header class="app-header">
+      <button class="back-btn" id="back-admin" style="margin:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <span style="font-family:var(--font-h);font-size:1.1rem;font-weight:800;color:var(--c-text)">Panel Admin<span id="admin-count-badge" class="admin-count-badge" style="display:none">0</span></span>
+      <div style="width:38px"></div>
+    </header>
+    <div class="page-wrap" style="padding-top:1.25rem">
+      <div id="admin-list">
+        <div class="admin-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+          <p>Sin solicitudes pendientes 🎉</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAPELERA
+  ══════════════════════════════════════ -->
+  <div id="trash-screen" class="screen">
+    <header class="app-header">
+      <button class="back-btn" id="back-trash" style="margin:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <span style="font-family:var(--font-h);font-size:1.1rem;font-weight:800;color:var(--c-text)">🗑️ Papelera</span>
+      <div style="width:38px"></div>
+    </header>
+    <div class="page-wrap" style="padding-top:1rem">
+      <p style="color:var(--c-muted);font-size:.82rem;text-align:center;margin-bottom:1.25rem;line-height:1.5">
+        Las conversaciones aquí están ocultas en Mensajes.<br>Puedes restaurarlas o eliminarlas permanentemente.
+      </p>
+      <div id="trash-list"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR
+       BUG CORREGIDO: nav-trash dentro del <nav>
+  ══════════════════════════════════════ -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-head">
+      <div class="sb-user-row">
+        <div class="sb-avatar" id="sb-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="sb-user-info">
+          <div class="sb-user-name" id="sb-user-name">—</div>
+          <div class="sb-user-email" id="sb-user-email">—</div>
+        </div>
+      </div>
+      <button class="close-sb" id="close-sb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sb-nav">
+      <button class="nav-item active" data-s="discovery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Descubrir
+      </button>
+      <button class="nav-item" data-s="messages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Mensajes
+      </button>
+      <button class="nav-item" data-s="profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Mi Perfil
+      </button>
+      <button class="nav-item" data-s="matches">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Mis Matches
+      </button>
+      <button class="nav-item" data-s="verify" id="nav-verify">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+        Verificar perfil
+      </button>
+      <button class="nav-item" data-s="admin" id="nav-admin" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Panel Admin
+        <span id="sb-admin-badge" class="admin-count-badge" style="display:none;margin-left:.5rem">0</span>
+      </button>
+      <!-- BUG CORREGIDO: botón papelera dentro del nav -->
+      <button class="nav-item" id="nav-trash">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        Papelera
+        <span id="trash-badge" style="display:none;font-size:.65rem;background:rgba(244,63,94,.25);color:#f87171;font-weight:800;padding:.1rem .45rem;border-radius:50px;margin-left:.4rem">0</span>
+      </button>
+    </nav>
+    <div class="sb-foot">
+      <button class="logout-btn" id="logout-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ══════════════════════════════════════
+       MODALES
+  ══════════════════════════════════════ -->
+
+  <!-- Error -->
+  <div class="modal-overlay" id="m-error">
+    <div class="modal-box">
+      <div class="modal-stripe err"></div>
+      <div class="modal-body">
+        <div class="modal-icon err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+        <div class="modal-txt"><h4 id="m-error-title">Error</h4><p id="m-error-msg"></p></div>
+      </div>
+      <div class="modal-foot"><button class="btn btn-danger btn-sm" id="m-error-ok">Aceptar</button></div>
+    </div>
+  </div>
+
+  <!-- Éxito -->
+  <div class="modal-overlay" id="m-success">
+    <div class="modal-box">
+      <div class="modal-stripe ok"></div>
+      <div class="modal-body">
+        <div class="modal-icon ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="modal-txt"><h4 id="m-success-title">¡Éxito!</h4><p id="m-success-msg"></p></div>
+      </div>
+      <div class="modal-foot"><button class="btn btn-success btn-sm" id="m-success-ok">Aceptar</button></div>
+    </div>
+  </div>
+
+  <!-- Recuperar contraseña -->
+  <div class="modal-overlay" id="m-recovery">
+    <div class="modal-box">
+      <div class="modal-stripe"></div>
+      <div class="modal-body">
+        <div class="modal-icon info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="modal-txt"><h4>Recuperar contraseña</h4><p>Ingresa tu correo y te enviamos el enlace</p></div>
+      </div>
+      <div class="modal-input-wrap"><input type="email" id="rec-email" placeholder="tucorreo@ejemplo.com"></div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost btn-sm" id="rec-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="rec-send">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Eliminar cuenta -->
+  <div class="modal-overlay" id="m-delete">
+    <div class="modal-box">
+      <div class="modal-stripe err"></div>
+      <div class="modal-body">
+        <div class="modal-icon err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></div>
+        <div class="modal-txt"><h4>¿Eliminar cuenta?</h4><p>Esta acción es permanente. Se borrarán todos tus datos.</p></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost btn-sm" id="del-cancel">Cancelar</button>
+        <button class="btn btn-danger btn-sm" id="del-confirm">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Match -->
+  <div class="modal-overlay" id="m-match">
+    <div class="modal-box">
+      <div class="modal-stripe"></div>
+      <div class="match-modal-body">
+        <div id="match-av-wrap" class="match-av-big-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>¡Es un Match! 🎉</h3>
+        <p id="match-name-txt">¡Los dos se gustaron!</p>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost btn-sm" id="match-later">Después</button>
+        <button class="btn btn-primary btn-sm" id="match-chat-btn">Ir al chat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solicitud de conexión -->
+  <div class="modal-overlay" id="m-solicitud">
+    <div class="modal-box">
+      <div class="modal-stripe"></div>
+      <div class="sol-profile-preview">
+        <div class="sol-av-ph" id="sol-av-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="sol-info"><h4 id="sol-name">—</h4><p id="sol-meta">—</p></div>
+      </div>
+      <div class="sol-msg-wrap">
+        <label>Tu mensaje de solicitud</label>
+        <textarea id="sol-msg" maxlength="200" placeholder="Hola, vi tu perfil en LionMatch… 👋"></textarea>
+        <div class="sol-char"><span id="sol-char-n">0</span>/200</div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost btn-sm" id="sol-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="sol-send">Enviar 💌</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUG CORREGIDO: Modal de confirmación faltante -->
+  <div class="modal-overlay" id="m-confirm">
+    <div class="modal-box">
+      <div class="modal-stripe err" id="m-confirm-stripe"></div>
+      <div class="modal-body">
+        <div class="modal-icon warn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="modal-txt">
+          <h4 id="m-confirm-title">¿Estás seguro?</h4>
+          <p id="m-confirm-msg"></p>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost btn-sm" id="m-confirm-cancel">Cancelar</button>
+        <button class="btn btn-danger btn-sm" id="m-confirm-ok">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Lightbox fotos -->
+  <div id="photo-lightbox" onclick="if(event.target===this||event.target.classList.contains('lb-overlay'))closeLightbox()">
+    <div class="lb-overlay"></div>
+    <img id="lb-img" class="lb-img" alt="Foto ampliada">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+  </div>
+
+  <!-- Modal Políticas de Seguridad -->
+  <div class="modal-overlay" id="m-security">
+    <div class="modal-box" style="max-width:420px">
+      <div class="modal-stripe" style="background:linear-gradient(135deg,#6c63ff,#d946ef)"></div>
+      <div class="modal-body" style="flex-direction:column;gap:1rem">
+        <div style="display:flex;align-items:center;gap:.75rem">
+          <div class="modal-icon" style="background:rgba(108,99,255,.12);flex-shrink:0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4 style="font-size:1.05rem;color:var(--c-text)">Políticas de Seguridad</h4>
+        </div>
+        <div style="font-size:.88rem;color:var(--c-muted);line-height:1.7;display:flex;flex-direction:column;gap:.75rem">
+          <p>🤝 <strong style="color:var(--c-text)">Primera cita en lugar público.</strong> Elige cafeterías, plazas o restaurantes concurridos. Evita lugares solitarios o privados para el primer encuentro.</p>
+          <p>📱 <strong style="color:var(--c-text)">Avisa a alguien de confianza.</strong> Dile a un familiar o amigo con quién te vas a reunir, dónde y a qué hora. Comparte tu ubicación en tiempo real si puedes.</p>
+          <p>🚗 <strong style="color:var(--c-text)">Tu propio transporte.</strong> Usa tu coche o un servicio de transporte independiente. No aceptes que te lleven o recojan en el primer encuentro.</p>
+          <p>🔒 <strong style="color:var(--c-text)">Cuida tu información personal.</strong> No compartas tu domicilio exacto, lugar de trabajo ni datos bancarios con personas que acabas de conocer.</p>
+          <p>🚨 <strong style="color:var(--c-text)">Confía en tu instinto.</strong> Si algo se siente mal, está bien retirarte. Tu seguridad es lo primero. En caso de emergencia llama al <strong style="color:#f87171">911</strong>.</p>
+          <p style="font-size:.78rem;color:var(--c-dim);border-top:1px solid rgba(130,120,255,.1);padding-top:.75rem">LionMatch se preocupa por tu bienestar. Reporta cualquier comportamiento sospechoso desde el perfil del usuario.</p>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-primary btn-sm" id="m-security-ok">Entendido ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Notificación personalizada -->
+  <div class="modal-overlay" id="m-notif" style="z-index:9999">
+    <div class="modal-box" style="max-width:340px">
+      <div class="modal-stripe" style="background:linear-gradient(135deg,#6c63ff,#a78bfa)"></div>
+      <div class="modal-body" style="gap:.75rem">
+        <div class="modal-icon" style="background:rgba(108,99,255,.12);flex-shrink:0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" width="20" height="20"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="modal-txt">
+          <h4 id="m-notif-title" style="font-size:.95rem">Nuevo mensaje</h4>
+          <p id="m-notif-msg" style="font-size:.83rem;margin-top:.25rem"></p>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost btn-sm" id="m-notif-close">Cerrar</button>
+        <button class="btn btn-primary btn-sm" id="m-notif-open">Ver chat</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /.app -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
